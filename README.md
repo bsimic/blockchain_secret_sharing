@@ -1,6 +1,4 @@
-# Thesis title: Real time event registration on blockchain
+##Shamir's Secret Sharing on the Ethereum blockchain
 
-## Sadržaj:
-Blockchain je dijeljena, distribuirana i decentralizirana baza koja je dostupna za korištenje nezavisno od pojedinih aplikacija i sudionika. Blockchain omogućava zapisivanje, praćenje i razmjenu vrijednih informacija na siguran i postojan način. U ovom radu potrebno je provjeriti koncept upotrebe blockchain za registraciju i evidentiranje događaja u stvarnom vremenu na siguran način uz mogućnost korištenja kombinacija ključeva (multisignature) za pristup evidentiranim podacima.
-
-
+#Description:
+Using Shamir's Secret Sharing to save a value, dividing it into 3 parts (shares) and encrypting those parts using multi signature (2-of-3) encryption. Afterwards the values are combined into one string which is then written onto the Ethereum blockchain. After retrieving the string from the blockchain, the value can be decrypted by entering 2 out of 3 private keys which were used to encrypt it originally.
