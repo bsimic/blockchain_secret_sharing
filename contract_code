@@ -1,0 +1,52 @@
+pragma solidity ^0.4.0;
+contract eventLedger {
+
+//'dict' of addresses that can register a new event 
+    mapping (address => bool) approvedAddress;
+    string timestamp;
+
+    // event that writes a timestamp onto blockhain
+    event broadcastEvent(address _address, string _timestamp);
+
+// konstruktor - name has to be same as the contract name
+    function eventLedger() public {
+    }
+
+    // 'payable' function which is called when the contract receives ether -- adding address to the list of approved addresses
+
+    function() public payable{
+        //msg - special variable that contains all of the transaction info
+        if (msg.value > 20000000000000000) {
+            //if value is > 0.02 ethers, add the address to the approved list
+            approvedAddress[msg.sender] =  true;
+        }
+    }
+
+
+    // Read-only function that checks if the function is on the approved list
+    function isApproved(address _address) public view returns (bool approved) {
+        return approvedAddress[_address];
+    }
+
+    // Read-only function that returns the last registered event
+    function getEvent() public view returns(string) {
+        return timestamp;
+    }
+
+    //function that modifies the blockchain state
+    function addEvent(string _timestamp) public returns (bool success) {
+
+        // check if the address is on the approved list, if not return false
+        if (approvedAddress[msg.sender]) {
+
+            timestamp = _timestamp;
+            emit broadcastEvent(msg.sender, timestamp);
+            return true;
+
+        } else {
+            return false;
+        }
+
+    }
+
+}
